@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% block content %}
+<div id="main">
+    <div class="title">
+        <h1>{{ blog.title }}</h1>
+        <span class="byline">{{ blog.subtitle }}</span>
+        <div class="content">
+            {{ blog.content | safe}}
+        </div>
+        <div class="blog_footer">
+            {{ blog.create_time }} 吴纹羽
+        </div>
+    </div>
+</div>
+<script type="text/javascript" >
+    $(function(){
+        var i = parseInt(Math.random()*5+1);
+        $("#banner-img").attr("src","{% static "" %}image/banner-"+i+".jpg");
+    })
+</script>
+{% endblock %}

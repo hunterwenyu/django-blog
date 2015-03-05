@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% block content %}
+<div id="main">
+    <div id="banner">
+        <img id="banner-img" src="{% static "image/banner-1.jpg" %}" alt="" class="image-full" />
+    </div>
+    <div id="welcome">
+        <div class="title">
+            <h2>欢迎！</h2>
+            <span class="byline">
+                这个网站包含我所整理的原创文章，在页面左侧包含我的GitHub，本站的源码也同样保存在我的GitHub中如果感兴趣
+                的话也可以去查看。在GitHub的下方是我的Email地址，如果需要帮助的话也可以给我发送电子邮件<br/>
+            </span>
+        </div>
+        <p></p>
+        <ul class="actions">
+            <li><a href="#" class="button">Etiam posuere</a></li>
+        </ul>
+    </div>
+    <div id="featured">
+        <div class="title">
+            <h2>原创博文</h2>
+            <span class="byline">分享技术与生活中的成果</span>
+        </div>
+        <ul class="style1">
+            {% for blog in blogs %}
+            <li>
+                <p class="date"><a href="">{{ blog.month }}<b>{{ blog.day }}</b></a></p>
+                <a href="/blog/{{ blog.id }}/"><h3><b>{{ blog.title }}</b></h3></a>
+                <a href="/blog/{{ blog.id }}/"><p class="summary">{{ blog.summary }}</p></a>
+            </li>
+            {% endfor %}
+        </ul>
+    <p>
+        <a {% if yesteryear %}href="/index/{{ year|add:-1 }}/#featured"{% endif %}>{{ year|add:-1 }}</a> ·
+        <b><a href="#featured">{{ year }}</a></b> ·
+        <a {% if next_year %}href="/index/{{ year|add:1 }}/#featured"{% endif %}>{{ year|add:1 }}</a>
+    </p>
+    </div>
+    <div id="copyright">
+        <span>&copy; Untitled. All rights reserved. | Photos by <a href="http://fotogrph.com/">Fotogrph</a></span>
+        <span>Design by <a href="http://templated.co" rel="nofollow">TEMPLATED</a>.</span>
+    </div>
+</div>
+<script type="text/javascript" >
+    $(function(){
+        var i = parseInt(Math.random()*4+1);
+        $("#banner-img").attr("src","{% static "" %}image/banner-"+i+".jpg");
+
+        //超出范围的摘要进行截取
+        subSummary();
+    })
+
+    function subSummary(){
+        var summary = $(".summary");
+        for(var i=0;i<summary.length;i++){
+            summary[i] = $(summary[i])
+            summary[i].html(summary[i].html().substring(0,90)+"...")
+        }
+    }
+</script>
+{% endblock %}

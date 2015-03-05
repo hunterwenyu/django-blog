@@ -1,0 +1,42 @@
+{% load staticfiles %}
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script type="text/javascript" src="{% static "js/jquery-1.11.1.min.js" %}"></script>
+    <script type="text/javascript" src="{% static "stickUp/stickUp.js" %}"></script>
+    <link href="{% static "blog/default.css" %}" rel="stylesheet" type="text/css" media="all" />
+</head>
+<body>
+<div id="page" class="container">
+	<div id="header">
+		<div id="logo">
+			<img src="{% static "blog/images/head-1.jpg" %}" width="90" height="90" alt="" />
+			<h1><a href="#">cloud-geek</a></h1>
+			<span>严以律己，宽以待人</span>
+		</div>
+		<div id="menu" class="menu">
+			<ul>
+				<li class="current_page_item"><a href="/index" accesskey="1" title="">Home</a></li>
+				<li><a href="https://github.com/RubyYu" accesskey="2" title="">GitHub</a></li>
+				<li><a href="mailto:moka20477@gmail.com" accesskey="3" title="">Email</a></li>
+			</ul>
+		</div>
+	</div>
+    {% block content %}
+    {% endblock %}
+</div>
+<script type="text/javascript">
+  jQuery(function($) {
+    $(document).ready( function() {
+      $('#header').stickUp({
+          marginTop:'auto'
+      });
+    });
+  });
+</script>
+</body>
+</html>
