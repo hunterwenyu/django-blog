@@ -25,7 +25,7 @@ def rss_subscribe():
     for b in rss:
         time = re.findall(r'(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2}):(\d{2})Z', str(b['published']))
         print(time)
-        create_time = datetime.datetime(int(time[0][0]), int(time[0][1]), int(time[0][2]), int(time[0][3]), int(time[0][4]))
+        create_time = datetime.datetime(int(time[0][0]), int(time[0][1]), int(time[0][2]), int(time[0][3])+8, int(time[0][4]))
         html = urllib2.urlopen(b['id']).read()
         content = re.findall(r'<div id=\"cnblogs_post_body\">[\S\s]*<div id=\"MySignature\">', str(html))[0]
         blog = models.Blog()

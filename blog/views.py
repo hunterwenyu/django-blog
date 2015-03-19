@@ -5,7 +5,6 @@ from datetime import date
 
 
 def index(request, year):
-    utils.rss_subscribe()
     year = int(year)
     blog_array = Blog.objects.filter(create_time__year=year).order_by('-is_top', '-create_time')
     yesteryear = True if Blog.objects.filter(create_time__year=year-1) else False
