@@ -3,15 +3,16 @@
   
 ## 框架
 
-  `python2.7`      -- 编程语言
-  `django`         -- web框架
-  `django-crontab` -- 计划任务
-  `feedparser`     -- RSS解析框架
+* `python2.7`      -- 编程语言
+* `django`         -- web框架
+* `django-crontab` -- 计划任务
+* `feedparser`     -- RSS解析框架
   
   
 ## 如何开启计划任务
 **Example**
   * 在`settings.py`中添加计划任务（时间，函数）
+  
   ```
     CRONJOBS = [
         ('*/1 * * * *', 'blog.utils.rss_subscribe'),
