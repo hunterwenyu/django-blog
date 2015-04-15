@@ -48,6 +48,7 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'blog.middleware.VisitorMiddleWare'
 )
 
 ROOT_URLCONF = 'mkblog.urls'
@@ -97,6 +98,6 @@ TEMPLATE_DIRS = (
 )
 
 CRONJOBS = [
-    ('*/1 * * * *', 'blog.utils.rss_subscribe'),
+    ('* 2 * * *', 'blog.utils.rss_subscribe'),
 ]
 
