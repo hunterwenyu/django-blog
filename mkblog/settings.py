@@ -20,7 +20,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 SECRET_KEY = '1#lm$5e5k-+oe@3grcc9_2m6o5+bfy=1jmpnv^cc-@*i1awl4i'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 TEMPLATE_DEBUG = True
 
@@ -64,9 +64,9 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'mkblog',
-        'USER': 'root',
-        'PASSWORD': 'root',
-        'HOST': '192.168.14.31',
+        'USER': 'blog',
+        'PASSWORD': 'qwe123',
+        'HOST': 'moka20477.mysql.rds.aliyuncs.com',
         'POST': '3306'
     }
 }
@@ -93,11 +93,48 @@ STATICFILES_DIRS = (os.path.join('static'), )
 
 STATIC_URL = '/static/'
 
+LOGGING = {
+'version': 1,
+'disable_existing_loggers': False,
+'filters': {
+    'require_debug_false': {
+        '()': 'django.utils.log.RequireDebugFalse'
+    },
+    'require_debug_true': {
+        '()': 'django.utils.log.RequireDebugTrue'
+    },
+},
+'handlers': {
+    'mail_admins': {
+        'level': 'ERROR',
+        'filters': ['require_debug_false'],
+        'class': 'django.utils.log.AdminEmailHandler'
+    },
+    'debug_console': {
+        'level': 'DEBUG',
+        'filters': ['require_debug_true'],
+        'class': 'logging.StreamHandler'
+    },
+},
+'loggers': {
+    'django.request': {
+        'handlers': ['mail_admins'],
+        'level': 'ERROR',
+        'propagate': True,
+    },
+    'django_crontab.crontab': {
+    'handlers': ['debug_console'],
+    'level': 'WARNING',
+    'propagate': False,
+    },
+}
+}
+
 TEMPLATE_DIRS = (
     os.path.join(BASE_DIR,  'templates'),
 )
 
 CRONJOBS = [
-    ('* 2 * * *', 'blog.utils.rss_subscribe'),
+    ('*/1 * * * *', 'blog.utils.rss_subscribe'),
 ]
 
